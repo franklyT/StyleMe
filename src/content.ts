@@ -56,10 +56,8 @@ function isLight(color: any) {
 
   // Using the HSP value, determine whether the color is light or dark
   if (hsp > 75) {
-    // light
     return true;
   } else {
-    // dark
     return false;
   }
 }
