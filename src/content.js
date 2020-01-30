@@ -56,16 +56,10 @@ function runDOOM() {
             all[iterator].classList.add("StyleMe-injected-" + StyleMe.getKey());
             all[iterator].style.backgroundColor = lightenDarkenColor(computeStyles.getPropertyValue('background-color'), 90);
         }
-        else {
-            // we're generally not lightening backgrounds
-        }
         if (!isLight(computeStyles.getPropertyValue('color'))) {
             StyleMe.setKey();
             all[iterator].classList.add("StyleMe-injected-" + StyleMe.getKey());
             all[iterator].style.color = lightenDarkenColor(computeStyles.getPropertyValue('color'), -90);
-        }
-        else {
-            // we're generally not darkening text
         }
     }
 }

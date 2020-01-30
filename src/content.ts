@@ -77,8 +77,6 @@ function runDOOM() {
         computeStyles.getPropertyValue('background-color'),
         90
       );
-    } else {
-      // we're generally not lightening backgrounds
     }
     if (!isLight(computeStyles.getPropertyValue('color'))) {
       StyleMe.setKey();
@@ -87,9 +85,7 @@ function runDOOM() {
         computeStyles.getPropertyValue('color'),
         -90
       );
-    } else {
-      // we're generally not darkening text
-    }
+    } 
   }
 }
 
