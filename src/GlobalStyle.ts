@@ -7,16 +7,13 @@ class GlobalStyle {
     // initalize with entropy protected node namespace
     this.setKey();
   }
-  // Private
-  // refer to getKey() for external access
-  _uniqueKey: string = '';
 
-  // Private
-  _help = new Helpers.Helpers();
+  private _uniqueKey: string = '';
+   _help = new Helpers.Helpers();
 
   setKey() {
     let uniqueId: Array<string> = [];
-    let iterator: number = 10; // 10 seems sufficient arbitrary entropy
+    let iterator: number = 15; // 15 seems sufficient entropy
     while (iterator !== 0) {
       uniqueId.push(
         this._help.alphanumericKey[this._help.getRandomBetween(1, 62)]
