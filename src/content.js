@@ -9,38 +9,13 @@ function styleMeLoader() {
     styleMe.innerHTML = "\n  ";
     document.getElementsByTagName('head')[0].appendChild(styleMe);
 }
-function lightenDarkenColor(colorArg, reducerArg) {
-    var color = colorArg.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/);
-    var oldColor = [color[1], color[2], color[3], color[4]];
-    // Substitute alpha channel if not provided through a mini test
-    oldColor.forEach(function (elm, index) {
-        if (!elm) {
-            oldColor.splice(index, 1, 1);
-        }
-    });
-    var newColor = [];
-    oldColor.forEach(function (elm, index) {
-        // Push alpha channel to array unchanged
-        if (index === 3) {
-            newColor.push(elm);
-        }
-        else {
-            // Lighten/darken RGB values
-            newColor.push(addZeroFloor(Number(elm) + Number(reducerArg)));
-            newColor.push(',');
-        }
-    });
-    return "rgba(" + newColor.join('') + ")";
-}
-function addZeroFloor() {
-    var numbers = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        numbers[_i] = arguments[_i];
-    }
-    var returnPoint = numbers.reduce(function (num1, num2) {
-        num1 + num2;
-    });
-    return returnPoint > 0 ? returnPoint : 0;
+function lightenDarkenColor(colorArg, percentArg) {
+    var color = colorArg.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/), r = color[1] > 16 ? Math.floor(Number(color[1]) - Number(color[1]) * Number(percentArg * 0.01)) : 16, g = color[2] > 16 ? Math.floor(Number(color[2]) - Number(color[2]) * Number(percentArg * 0.01)) : 16, b = color[3] > 16 ? Math.floor(Number(color[3]) - Number(color[3]) * Number(percentArg * 0.01)) : 16, 
+    // Substitute alpha channel if not calculated
+    a = color[4] ? color[4] : 1;
+    console.log("Old Value: " + colorArg);
+    console.log("New Value: rgba(" + r + ", " + g + ", " + b + ", " + a + ")");
+    return "rgba(" + r + ", " + g + ", " + b + ", " + a + ")";
 }
 function isLight(color) {
     // Variables for red, green, blue values
@@ -81,22 +56,18 @@ function runDOOM() {
         if (isLight(computeStyles.getPropertyValue('background-color'))) {
             StyleMe.setKey();
             all[iterator].classList.add("StyleMe-injected-" + StyleMe.getKey());
-            all[iterator].style.backgroundColor = lightenDarkenColor(computeStyles.getPropertyValue('background-color'), -200);
+            all[iterator].style.backgroundColor = lightenDarkenColor(computeStyles.getPropertyValue('background-color'), 90);
         }
         else {
-            StyleMe.setKey();
-            all[iterator].classList.add("StyleMe-injected-" + StyleMe.getKey());
-            all[iterator].style.backgroundColor = lightenDarkenColor(computeStyles.getPropertyValue('background-color'), 50);
+            // we're generally not lightening backgrounds
         }
-        if (isLight(computeStyles.getPropertyValue('color'))) {
+        if (!isLight(computeStyles.getPropertyValue('color'))) {
             StyleMe.setKey();
             all[iterator].classList.add("StyleMe-injected-" + StyleMe.getKey());
-            all[iterator].style.color = lightenDarkenColor(computeStyles.getPropertyValue('color'), -200);
+            all[iterator].style.color = lightenDarkenColor(computeStyles.getPropertyValue('color'), -90);
         }
         else {
-            StyleMe.setKey();
-            all[iterator].classList.add("StyleMe-injected-" + StyleMe.getKey());
-            all[iterator].style.color = lightenDarkenColor(computeStyles.getPropertyValue('color'), 200);
+            // we're generally not darkening text
         }
     }
 }

@@ -15,37 +15,19 @@ function styleMeLoader() {
   document.getElementsByTagName('head')[0].appendChild(styleMe);
 }
 
-function lightenDarkenColor(colorArg: string, reducerArg: number) {
+function lightenDarkenColor(colorArg: string, percentArg: number) {
   const color: any = colorArg.match(
       /^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/
     ),
-    r = color[1],
-    g = color[2],
-    b = color[3],
-    // Substitute alpha channel if not provided
+    r = color[1] > 16 ? Math.floor(Number(color[1]) - Number(color[1]) * Number(percentArg * 0.01)) : 16,
+    g = color[2] > 16 ? Math.floor(Number(color[2]) - Number(color[2]) * Number(percentArg * 0.01)) : 16,
+    b = color[3] > 16 ? Math.floor(Number(color[3]) - Number(color[3]) * Number(percentArg * 0.01)) : 16,
+    // Substitute alpha channel if not calculated
     a = color[4] ? color[4] : 1;
 
-  let oldColor = [r, g, b, a];
-  
-  let newColor: Array<any> = [];
-  oldColor.forEach((elm, index) => {
-    // Push alpha channel to array unchanged
-    if (index === 3) {
-      newColor.push(elm);
-    } else {
-      // Lighten/darken RGB values
-      newColor.push(addZeroFloor(Number(elm) + Number(reducerArg)));
-      newColor.push(',');
-    }
-  });
-  return `rgba(${newColor.join('')})`;
-}
-
-function addZeroFloor(...numbers: Array<any>) {
-  const returnPoint = numbers.reduce((num1: number, num2: number) => {
-    num1 + num2;
-  });
-  return returnPoint > 0 ? returnPoint : 0;
+  console.log(`Old Value: ${colorArg}`);
+  console.log(`New Value: rgba(${r}, ${g}, ${b}, ${a})`);
+  return `rgba(${r}, ${g}, ${b}, ${a})`;
 }
 
 function isLight(color: any) {
@@ -95,30 +77,20 @@ function runDOOM() {
       all[iterator].classList.add(`StyleMe-injected-${StyleMe.getKey()}`);
       all[iterator].style.backgroundColor = lightenDarkenColor(
         computeStyles.getPropertyValue('background-color'),
-        -200
+        90
       );
     } else {
-      StyleMe.setKey();
-      all[iterator].classList.add(`StyleMe-injected-${StyleMe.getKey()}`);
-      all[iterator].style.backgroundColor = lightenDarkenColor(
-        computeStyles.getPropertyValue('background-color'),
-        50
-      );
+      // we're generally not lightening backgrounds
     }
-    if (isLight(computeStyles.getPropertyValue('color'))) {
+    if (!isLight(computeStyles.getPropertyValue('color'))) {
       StyleMe.setKey();
       all[iterator].classList.add(`StyleMe-injected-${StyleMe.getKey()}`);
       all[iterator].style.color = lightenDarkenColor(
         computeStyles.getPropertyValue('color'),
-        -200
+        -90
       );
     } else {
-      StyleMe.setKey();
-      all[iterator].classList.add(`StyleMe-injected-${StyleMe.getKey()}`);
-      all[iterator].style.color = lightenDarkenColor(
-        computeStyles.getPropertyValue('color'),
-        200
-      );
+      // we're generally not darkening text
     }
   }
 }
