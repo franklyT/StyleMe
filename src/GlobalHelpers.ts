@@ -1,9 +1,11 @@
 export { Helpers };
 
 class Helpers {
-  constructor() {}
+  constructor() {
+    console.log(this.alphanumericKey.length)
+  }
   readonly alphanumericKey: string =
-    'abcdefghijklmnopqrtsuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'; // length is 62
+    'abcdefghijklmnopqrtsuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\`~!@#$%^&*()-_=+[{]}\|;:\'",<.>/?'; // length is 93
   getRandomBetween(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }

@@ -1,4 +1,4 @@
-import * as Helpers from './GlobalHelpers.js';
+import * as StyleMe from './GlobalHelpers.js';
 
 export { GlobalStyle };
 
@@ -9,10 +9,10 @@ class GlobalStyle {
   }
 
   private _uniqueKey: string = '';
-   _help = new Helpers.Helpers();
+  private _help: StyleMe.Helpers = new StyleMe.Helpers();
 
   setKey() {
-    let uniqueId: Array<string> = [];
+    let uniqueId: Array<string> = ['StyleMe-injected-'];
     let iterator: number = 15; // 15 seems sufficient entropy
     while (iterator !== 0) {
       uniqueId.push(
