@@ -4,7 +4,7 @@ var GlobalStyle = /** @class */ (function () {
     function GlobalStyle() {
         this._lastKey = '';
         this._masterStyle = [
-            "body {background: black;}html {background: black;}"
+            "body {background: black !important;}html {background: black !important;}"
         ];
         this.help = new StyleMe.Helpers();
     }

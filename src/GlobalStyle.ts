@@ -5,7 +5,7 @@ export { GlobalStyle };
 class GlobalStyle {
   private _lastKey: string = '';
   private _masterStyle: Array<string> = [
-    `body {background: black;}html {background: black;}`
+    `body {background: black !important;}html {background: black !important;}`
   ];
   public help: StyleMe.Helpers = new StyleMe.Helpers();
 
