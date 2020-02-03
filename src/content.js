@@ -7,13 +7,17 @@ function styleMeLoader() {
     document.getElementsByTagName('head')[0].appendChild(Style_Me);
 }
 function processNodes() {
-    document.body.querySelectorAll('*:not(script)').forEach(function (elm) {
+    document.body
+        .querySelectorAll('*:not(script)')
+        .forEach(function (elm, key, array) {
         elm.style.color = "lime";
         var computeStyles = window.getComputedStyle(elm);
         if (styleMe.help.isLight(computeStyles.getPropertyValue('background-color'))) {
             styleMe.addStyle(styleMe.generateKey(), "background: " + styleMe.help.lightenDarkenColor(computeStyles.getPropertyValue('background-color'), 90) + " !important;");
             elm.classList.add("" + styleMe.getLastKey());
-            document.getElementById('StyleMe-Master-Node').innerHTML = styleMe.getStyles().join('');
+            if (Object.is(array.length - 1, key)) {
+                document.getElementById('StyleMe-Master-Node').innerHTML = styleMe.getStyles().join('');
+            }
         }
     });
 }
