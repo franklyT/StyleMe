@@ -9,18 +9,6 @@ class GlobalStyle {
   ];
   public help: StyleMe.Helpers = new StyleMe.Helpers();
 
-  getLastKey() {
-    return this._lastKey;
-  }
-
-  setLastKey(key: string) {
-    this._lastKey = key;
-  }
-
-  getStyles() {
-    return this._masterStyle;
-  }
-
   generateKey() {
     let uniqueId: Array<string> = ['StyleMe-injected-'];
     let iterator: number = 15; // 15 seems sufficient entropy
@@ -31,6 +19,18 @@ class GlobalStyle {
       iterator -= 1;
     }
     return uniqueId.join('');
+  }
+
+  getLastKey() {
+    return this._lastKey;
+  }
+
+  setLastKey(key: string) {
+    this._lastKey = key;
+  }
+
+  getStyles() {
+    return this._masterStyle;
   }
 
   addStyle(key: string, style: string) {

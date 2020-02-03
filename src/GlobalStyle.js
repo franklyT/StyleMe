@@ -8,15 +8,6 @@ var GlobalStyle = /** @class */ (function () {
         ];
         this.help = new StyleMe.Helpers();
     }
-    GlobalStyle.prototype.getLastKey = function () {
-        return this._lastKey;
-    };
-    GlobalStyle.prototype.setLastKey = function (key) {
-        this._lastKey = key;
-    };
-    GlobalStyle.prototype.getStyles = function () {
-        return this._masterStyle;
-    };
     GlobalStyle.prototype.generateKey = function () {
         var uniqueId = ['StyleMe-injected-'];
         var iterator = 15; // 15 seems sufficient entropy
@@ -25,6 +16,15 @@ var GlobalStyle = /** @class */ (function () {
             iterator -= 1;
         }
         return uniqueId.join('');
+    };
+    GlobalStyle.prototype.getLastKey = function () {
+        return this._lastKey;
+    };
+    GlobalStyle.prototype.setLastKey = function (key) {
+        this._lastKey = key;
+    };
+    GlobalStyle.prototype.getStyles = function () {
+        return this._masterStyle;
     };
     GlobalStyle.prototype.addStyle = function (key, style) {
         this._masterStyle.push("." + key + " {" + style + "}");
