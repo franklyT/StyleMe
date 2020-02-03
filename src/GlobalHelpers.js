@@ -14,8 +14,6 @@ var Helpers = /** @class */ (function () {
             : 16, b = color[3] > 16
             ? Math.floor(Number(color[3]) - Number(color[3]) * Number(percentArg * 0.01))
             : 16, a = color[4] ? color[4] : 1;
-        // console.log(`Old Value: ${colorArg}`);
-        // console.log(`New Value: rgba(${r}, ${g}, ${b}, ${a})`);
         return "rgba(" + r + ", " + g + ", " + b + ", " + a + ")";
     };
     Helpers.prototype.isLight = function (color) {

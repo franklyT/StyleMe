@@ -31,8 +31,6 @@ class Helpers {
           : 16,
       a = color[4] ? color[4] : 1;
 
-    // console.log(`Old Value: ${colorArg}`);
-    // console.log(`New Value: rgba(${r}, ${g}, ${b}, ${a})`);
     return `rgba(${r}, ${g}, ${b}, ${a})`;
   }
 
