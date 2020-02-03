@@ -31,6 +31,7 @@ function processNodes() {
   });
 }
 
+// remove from load, add mutation o
 window.addEventListener('load', () => {
   styleMeLoader();
   processNodes();
