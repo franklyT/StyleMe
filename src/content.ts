@@ -2,7 +2,7 @@ import * as StyleMe from './GlobalStyle.js';
 
 let styleMe = new StyleMe.GlobalStyle();
 
-function styleMeLoader() {
+function loadStyle() {
   const Style_Me = document.createElement('style');
   Style_Me.type = 'text/css';
   Style_Me.id = 'StyleMe-Master-Node';
@@ -42,7 +42,7 @@ function processNodes() {
 
 // remove from load, add mutation observer
 window.addEventListener('load', () => {
-  styleMeLoader();
+  loadStyle();
   lightenAllText();
   processNodes();
 });

@@ -1,6 +1,6 @@
 import * as StyleMe from './GlobalStyle.js';
 var styleMe = new StyleMe.GlobalStyle();
-function styleMeLoader() {
+function loadStyle() {
     var Style_Me = document.createElement('style');
     Style_Me.type = 'text/css';
     Style_Me.id = 'StyleMe-Master-Node';
@@ -25,7 +25,7 @@ function processNodes() {
 }
 // remove from load, add mutation observer
 window.addEventListener('load', function () {
-    styleMeLoader();
+    loadStyle();
     lightenAllText();
     processNodes();
 });
