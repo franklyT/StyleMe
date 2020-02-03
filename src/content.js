@@ -1,11 +1,9 @@
 import * as StyleMe from './GlobalStyle.js';
 var styleMe = new StyleMe.GlobalStyle();
-// inject all new CSS in style tag, not inline
-// maybe assign unique class to all DOM elements and style them based on that
 function styleMeLoader() {
     var Style_Me = document.createElement('style');
     Style_Me.type = 'text/css';
-    Style_Me.id = styleMe.getKey();
+    Style_Me.id = 'StyleMe-Master-Node';
     Style_Me.innerHTML = "\n  html {\n    background: black;\n  }\n\n  body {\n    background: black;\n  }\n  ";
     document.getElementsByTagName('head')[0].appendChild(Style_Me);
 }
@@ -49,19 +47,20 @@ function isLight(color) {
         return false;
     }
 }
-var styleObject = [];
-// current problem is that styleme injected tags are duplicated
 function runDOOM() {
     var all = document.body.querySelectorAll('*:not(script)');
     for (var iterator = 0, max = all.length; iterator < max; iterator++) {
         all[iterator].style.color = "lime ";
         var computeStyles = window.getComputedStyle(all[iterator]);
+        styleMe.getStyles();
         if (isLight(computeStyles.getPropertyValue('background-color'))) {
-            styleMe.setKey();
+            styleMe.addStyle(styleMe.generateKey(), "background: " + lightenDarkenColor(computeStyles.getPropertyValue('background-color'), 90) + " !important;");
             all[iterator].classList.add("" + styleMe.getKey());
-            all[iterator].style.backgroundColor = lightenDarkenColor(computeStyles.getPropertyValue('background-color'), 90);
+            document.getElementById('StyleMe-Master-Node').innerHTML = styleMe.getStyles().join('');
         }
     }
 }
-window.onload = styleMeLoader;
-runDOOM();
+window.addEventListener('load', function () {
+    styleMeLoader();
+    runDOOM();
+});

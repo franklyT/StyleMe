@@ -4,14 +4,28 @@ export { GlobalStyle };
 
 class GlobalStyle {
   constructor() {
-    // initalize with entropy protected node namespace
-    this.setKey();
   }
 
-  private _uniqueKey: string = '';
+  private _lastKey: string = '';
   private _help: StyleMe.Helpers = new StyleMe.Helpers();
+  private _masterStyle: Array<string> = [`
+    body {
+      background: black;
+    }
+    html {
+      background: black;
+    }
+  `];
 
-  setKey() {
+  getKey() {
+    return this._lastKey;
+  }
+
+  getStyles() {
+    return this._masterStyle;
+  }
+
+  generateKey() {
     let uniqueId: Array<string> = ['StyleMe-injected-'];
     let iterator: number = 15; // 15 seems sufficient entropy
     while (iterator !== 0) {
@@ -20,10 +34,12 @@ class GlobalStyle {
       );
       iterator -= 1;
     }
-    this._uniqueKey = uniqueId.join('');
+    return uniqueId.join('');
   }
 
-  getKey() {
-    return this._uniqueKey;
+  addStyle(key: string, style: string) {
+    let returnStyle: string = `.${key} {${style}}`;
+    this._masterStyle.push(returnStyle);
+    this._lastKey = key;
   }
 }

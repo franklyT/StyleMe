@@ -1,7 +1,7 @@
 export { Helpers };
 var Helpers = /** @class */ (function () {
     function Helpers() {
-        this.alphanumericKey = 'abcdefghijklmnopqrtsuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\`~!@#$%^&*()-_=+[{]}\|;:\'",<.>/?'; // length is 93
+        this.alphanumericKey = 'abcdefghijklmnopqrtsuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!@#$%^&*()-_=+[{]};:,<.>/?'; // length is 89
         console.log(this.alphanumericKey.length);
     }
     Helpers.prototype.getRandomBetween = function (min, max) {
