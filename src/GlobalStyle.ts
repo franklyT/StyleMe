@@ -3,22 +3,25 @@ import * as StyleMe from './GlobalHelpers.js';
 export { GlobalStyle };
 
 class GlobalStyle {
-  constructor() {
-  }
-
   private _lastKey: string = '';
-  private _help: StyleMe.Helpers = new StyleMe.Helpers();
-  private _masterStyle: Array<string> = [`
+  private _masterStyle: Array<string> = [
+    `
     body {
       background: black;
     }
     html {
       background: black;
     }
-  `];
+  `
+  ];
+  public help: StyleMe.Helpers = new StyleMe.Helpers();
 
-  getKey() {
+  getLastKey() {
     return this._lastKey;
+  }
+
+  setLastKey(key: string) {
+    this._lastKey = key;
   }
 
   getStyles() {
@@ -30,7 +33,7 @@ class GlobalStyle {
     let iterator: number = 15; // 15 seems sufficient entropy
     while (iterator !== 0) {
       uniqueId.push(
-        this._help.alphanumericKey[this._help.getRandomBetween(1, 62)]
+        this.help.alphanumericKey[this.help.getRandomBetween(1, 62)]
       );
       iterator -= 1;
     }
@@ -38,8 +41,7 @@ class GlobalStyle {
   }
 
   addStyle(key: string, style: string) {
-    let returnStyle: string = `.${key} {${style}}`;
-    this._masterStyle.push(returnStyle);
-    this._lastKey = key;
+    this._masterStyle.push(`.${key} {${style}}`);
+    this.setLastKey(key);
   }
 }
