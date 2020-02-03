@@ -9,7 +9,7 @@ function styleMeLoader() {
 function processNodes() {
     document.body
         .querySelectorAll('*:not(script)')
-        .forEach(function (elm, key, array) {
+        .forEach(function (elm) {
         elm.style.color = "lime";
         var computeStyles = window.getComputedStyle(elm);
         if (styleMe.help.isLight(computeStyles.getPropertyValue('background-color'))) {

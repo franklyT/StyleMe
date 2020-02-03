@@ -12,7 +12,7 @@ function styleMeLoader() {
 function processNodes() {
   document.body
     .querySelectorAll('*:not(script)')
-    .forEach((elm: any, key: number, array) => {
+    .forEach((elm: any) => {
       elm.style.color = `lime`;
       let computeStyles = window.getComputedStyle(elm);
       if (
