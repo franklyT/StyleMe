@@ -6,7 +6,7 @@ function styleMeLoader() {
     var Style_Me = document.createElement('style');
     Style_Me.type = 'text/css';
     Style_Me.id = styleMe.getKey();
-    Style_Me.innerHTML = "\n  ";
+    Style_Me.innerHTML = "\n  html {\n    background: black;\n  }\n\n  body {\n    background: black;\n  }\n  ";
     document.getElementsByTagName('head')[0].appendChild(Style_Me);
 }
 function lightenDarkenColor(colorArg, percentArg) {
@@ -52,18 +52,14 @@ function isLight(color) {
 var styleObject = [];
 // current problem is that styleme injected tags are duplicated
 function runDOOM() {
-    var all = document.body.querySelectorAll('*:not(script|style)');
+    var all = document.body.querySelectorAll('*:not(script)');
     for (var iterator = 0, max = all.length; iterator < max; iterator++) {
+        all[iterator].style.color = "lime ";
         var computeStyles = window.getComputedStyle(all[iterator]);
         if (isLight(computeStyles.getPropertyValue('background-color'))) {
             styleMe.setKey();
             all[iterator].classList.add("" + styleMe.getKey());
             all[iterator].style.backgroundColor = lightenDarkenColor(computeStyles.getPropertyValue('background-color'), 90);
-        }
-        if (!isLight(computeStyles.getPropertyValue('color'))) {
-            styleMe.setKey();
-            all[iterator].classList.add("" + styleMe.getKey());
-            all[iterator].style.color = lightenDarkenColor(computeStyles.getPropertyValue('color'), -90);
         }
     }
 }
