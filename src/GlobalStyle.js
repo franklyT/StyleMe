@@ -10,7 +10,7 @@ var GlobalStyle = /** @class */ (function () {
     }
     GlobalStyle.prototype.generateKey = function () {
         var uniqueId = ['StyleMe-injected-'];
-        var iterator = 15; // 15 seems sufficient entropy
+        var iterator = 20; // 20 seems sufficient entropy
         while (iterator !== 0) {
             uniqueId.push(this.help.alphanumericKey[this.help.getRandomBetween(1, 62)]);
             iterator -= 1;

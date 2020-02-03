@@ -11,7 +11,7 @@ class GlobalStyle {
 
   generateKey() {
     let uniqueId: Array<string> = ['StyleMe-injected-'];
-    let iterator: number = 15; // 15 seems sufficient entropy
+    let iterator: number = 20; // 20 seems sufficient entropy
     while (iterator !== 0) {
       uniqueId.push(
         this.help.alphanumericKey[this.help.getRandomBetween(1, 62)]

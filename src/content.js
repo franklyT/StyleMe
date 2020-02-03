@@ -10,7 +10,8 @@ function processNodes() {
     document.body
         .querySelectorAll('*:not(script)')
         .forEach(function (elm) {
-        elm.style.color = "lime";
+        styleMe.addStyle(styleMe.generateKey(), "color: lime !important;");
+        elm.classList.add("" + styleMe.getLastKey());
         var computeStyles = window.getComputedStyle(elm);
         if (styleMe.help.isLight(computeStyles.getPropertyValue('background-color'))) {
             styleMe.addStyle(styleMe.generateKey(), "background: " + styleMe.help.lightenDarkenColor(computeStyles.getPropertyValue('background-color'), 90) + " !important;");

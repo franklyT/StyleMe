@@ -13,7 +13,11 @@ function processNodes() {
   document.body
     .querySelectorAll('*:not(script)')
     .forEach((elm: any) => {
-      elm.style.color = `lime`;
+      styleMe.addStyle(
+        styleMe.generateKey(),
+        `color: lime !important;`)
+        elm.classList.add(`${styleMe.getLastKey()}`);
+
       let computeStyles = window.getComputedStyle(elm);
       if (
         styleMe.help.isLight(computeStyles.getPropertyValue('background-color'))
