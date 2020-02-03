@@ -6,7 +6,7 @@ function styleMeLoader() {
     Style_Me.id = 'StyleMe-Master-Node';
     document.getElementsByTagName('head')[0].appendChild(Style_Me);
 }
-function runDOOM() {
+function processNodes() {
     document.body.querySelectorAll('*:not(script)').forEach(function (elm) {
         elm.style.color = "lime";
         var computeStyles = window.getComputedStyle(elm);
@@ -19,5 +19,5 @@ function runDOOM() {
 }
 window.addEventListener('load', function () {
     styleMeLoader();
-    runDOOM();
+    processNodes();
 });

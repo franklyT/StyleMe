@@ -9,7 +9,7 @@ function styleMeLoader() {
   document.getElementsByTagName('head')[0].appendChild(Style_Me);
 }
 
-function runDOOM() {
+function processNodes() {
   document.body.querySelectorAll('*:not(script)').forEach((elm: any) => {
     elm.style.color = `lime`;
     let computeStyles = window.getComputedStyle(elm);
@@ -33,5 +33,5 @@ function runDOOM() {
 
 window.addEventListener('load', () => {
   styleMeLoader();
-  runDOOM();
+  processNodes();
 });
