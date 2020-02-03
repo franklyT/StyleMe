@@ -12,7 +12,7 @@ function styleMeLoader() {
 function processNodes() {
   document.body
     .querySelectorAll('*:not(script)')
-    .forEach((elm: any, key, array) => {
+    .forEach((elm: any, key: number, array) => {
       elm.style.color = `lime`;
       let computeStyles = window.getComputedStyle(elm);
       if (
@@ -26,7 +26,7 @@ function processNodes() {
           )} !important;`
         );
         elm.classList.add(`${styleMe.getLastKey()}`);
-        
+
         if (Object.is(array.length - 1, key)) {
           document.getElementById(
             'StyleMe-Master-Node'
