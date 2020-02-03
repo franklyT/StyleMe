@@ -15,9 +15,7 @@ function processNodes() {
         if (styleMe.help.isLight(computeStyles.getPropertyValue('background-color'))) {
             styleMe.addStyle(styleMe.generateKey(), "background: " + styleMe.help.lightenDarkenColor(computeStyles.getPropertyValue('background-color'), 90) + " !important;");
             elm.classList.add("" + styleMe.getLastKey());
-            if (Object.is(array.length - 1, key)) {
-                document.getElementById('StyleMe-Master-Node').innerHTML = styleMe.getStyles().join('');
-            }
+            document.getElementById('StyleMe-Master-Node').innerHTML = styleMe.getStyles().join('');
         }
     });
 }

@@ -26,12 +26,9 @@ function processNodes() {
           )} !important;`
         );
         elm.classList.add(`${styleMe.getLastKey()}`);
-
-        if (Object.is(array.length - 1, key)) {
-          document.getElementById(
-            'StyleMe-Master-Node'
-          )!.innerHTML = styleMe.getStyles().join('');
-        }
+        document.getElementById(
+          'StyleMe-Master-Node'
+        )!.innerHTML = styleMe.getStyles().join('');
       }
     });
 }
