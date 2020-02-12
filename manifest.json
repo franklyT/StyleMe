@@ -4,5 +4,5 @@
   "version": "0.1",
 
   "content_scripts": [{ "matches": ["<all_urls>"], "js": ["./src/injection.js"] }],
-  "web_accessible_resources": ["/src/content.js", "/src/GlobalStyle.js", "/src/GlobalHelpers.js"]
+  "web_accessible_resources": ["content.js", "GlobalStyle.js", "GlobalHelpers.js"]
 }
